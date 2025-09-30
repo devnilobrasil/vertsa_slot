@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2aa8v4bi6i5r"]
+
+[ext_resource type="FontFile" uid="uid://ck1070bxv6wxp" path="res://assets/fonts/Poppins-Medium.ttf" id="1_ixkon"]
+[ext_resource type="StyleBox" uid="uid://cjcrak8trfu31" path="res://assets/customs/customButtonStyle.tres" id="2_h80a1"]
+
+[node name="Button" type="Button"]
+offset_right = 148.0
+offset_bottom = 92.0
+theme_override_colors/font_color = Color(0.89411765, 0.47843137, 0.23529412, 1)
+theme_override_colors/font_focus_color = Color(0.7137255, 0.24313726, 0.8901961, 1)
+theme_override_colors/font_pressed_color = Color(0.7137255, 0.24313726, 0.8901961, 1)
+theme_override_colors/font_hover_color = Color(0.7137255, 0.24313726, 0.8901961, 1)
+theme_override_colors/font_disabled_color = Color(0.827451, 0.827451, 0.827451, 1)
+theme_override_fonts/font = ExtResource("1_ixkon")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = ExtResource("2_h80a1")
+theme_override_styles/pressed = ExtResource("2_h80a1")
+theme_override_styles/hover = ExtResource("2_h80a1")
+theme_override_styles/disabled = ExtResource("2_h80a1")
+text = "PLAY"

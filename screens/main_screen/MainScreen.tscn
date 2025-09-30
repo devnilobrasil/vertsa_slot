@@ -1,0 +1,124 @@
+[gd_scene load_steps=9 format=3 uid="uid://c5mngoq2ayvsy"]
+
+[ext_resource type="Texture2D" uid="uid://c1ftytdsmt7yh" path="res://screens/menu_screen/MenuScreenBG.tres" id="1_ku5eg"]
+[ext_resource type="Script" uid="uid://do7pugnl3nkg" path="res://screens/main_screen/SlotMachine.gd" id="2_c5jqm"]
+[ext_resource type="PackedScene" uid="uid://b2aa8v4bi6i5r" path="res://assets/customs/customButton.tscn" id="2_fr2ae"]
+[ext_resource type="Texture2D" uid="uid://b8hydvslu5gxh" path="res://assets/images/frame.webp" id="3_5khg7"]
+[ext_resource type="PackedScene" uid="uid://cxsmkrg1yfjmw" path="res://assets/customs/VictoryLabel.tscn" id="5_5khg7"]
+[ext_resource type="PackedScene" uid="uid://cwwryy7eb11k2" path="res://assets/customs/TryAgainLabel.tscn" id="6_frd1d"]
+[ext_resource type="AudioStream" uid="uid://bqvclcm1s6ekj" path="res://assets/sounds/victory.mp3" id="7_6qupq"]
+[ext_resource type="AudioStream" uid="uid://dj18op8ncrjx3" path="res://assets/sounds/background.mp3" id="8_ag5h5"]
+
+[node name="MainScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_c5jqm")
+
+[node name="Panel" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_ku5eg")
+
+[node name="ReelViewport" type="Control" parent="."]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -359.0
+offset_top = 75.265
+offset_right = 359.0
+offset_bottom = 975.265
+grow_horizontal = 2
+
+[node name="SlotContainer" type="VBoxContainer" parent="ReelViewport"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="ButtonsContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.027
+anchor_top = 0.85600007
+anchor_right = 0.97300005
+anchor_bottom = 0.91400003
+offset_left = 0.059999466
+offset_top = -0.5350342
+offset_right = -0.060058594
+offset_bottom = 19.224976
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 24
+
+[node name="ButtonStart" parent="ButtonsContainer" instance=ExtResource("2_fr2ae")]
+layout_mode = 2
+text = "START"
+
+[node name="ButtonStop" parent="ButtonsContainer" instance=ExtResource("2_fr2ae")]
+layout_mode = 2
+text = "STOP"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 208.34
+offset_right = 618.3402
+offset_bottom = 1301.0
+scale = Vector2(0.74, 0.745)
+pivot_offset = Vector2(0, 157.92)
+texture = ExtResource("3_5khg7")
+
+[node name="CongratsLabel" parent="." instance=ExtResource("5_5khg7")]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.423
+anchor_right = 0.5
+anchor_bottom = 0.423
+offset_left = -280.68448
+offset_top = -118.94
+offset_right = 280.68445
+offset_bottom = 120.06
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TryAgainLabel" parent="." instance=ExtResource("6_frd1d")]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.39800003
+anchor_right = 0.5
+anchor_bottom = 0.39800003
+offset_left = -226.0
+offset_top = -133.44003
+offset_right = 226.0
+offset_bottom = 126.55997
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VictorySound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_6qupq")
+volume_db = -10.039
+
+[node name="BackgroundSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_ag5h5")
+volume_db = -21.376
+autoplay = true
+
+[connection signal="pressed" from="ButtonsContainer/ButtonStart" to="Panel" method="_on_button_start_pressed"]
+[connection signal="pressed" from="ButtonsContainer/ButtonStop" to="Panel" method="_on_button_stop_pressed"]

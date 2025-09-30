@@ -1,0 +1,70 @@
+[gd_scene load_steps=8 format=3 uid="uid://ngglxr2qwf8v"]
+
+[ext_resource type="Texture2D" uid="uid://c1ftytdsmt7yh" path="res://screens/menu_screen/MenuScreenBG.tres" id="1_l87h2"]
+[ext_resource type="Script" uid="uid://ok2xinsnoug8" path="res://screens/menu_screen/MenuScreenScript.gd" id="2_yvn1c"]
+[ext_resource type="FontFile" uid="uid://ck1070bxv6wxp" path="res://assets/fonts/Poppins-Medium.ttf" id="3_sj7ld"]
+[ext_resource type="PackedScene" uid="uid://b2aa8v4bi6i5r" path="res://assets/customs/customButton.tscn" id="4_dxovp"]
+[ext_resource type="Texture2D" uid="uid://dwya4y5etvx2k" path="res://assets/images/logo.png" id="5_q4awb"]
+[ext_resource type="AudioStream" uid="uid://bxnqdqhmr7pka" path="res://assets/sounds/main_screen.mp3" id="6_yaene"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5dpk2"]
+font_size = 90
+shadow_size = 10
+shadow_color = Color(0.89411765, 0.47843137, 0.23529412, 1)
+shadow_offset = Vector2(4.33, 4.33)
+
+[node name="MainScreen" type="TextureRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("1_l87h2")
+script = ExtResource("2_yvn1c")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = -200
+theme_override_constants/margin_bottom = 100
+
+[node name="GameLabel" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_sj7ld")
+text = "VertsaSLOT"
+label_settings = SubResource("LabelSettings_5dpk2")
+
+[node name="HBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_constants/separation = 40
+
+[node name="ButtonPlay" parent="MarginContainer/HBoxContainer" instance=ExtResource("4_dxovp")]
+layout_mode = 2
+
+[node name="ButtonQuit" parent="MarginContainer/HBoxContainer" instance=ExtResource("4_dxovp")]
+layout_mode = 2
+text = "QUIT"
+
+[node name="Sprite2D" type="Sprite2D" parent="MarginContainer"]
+position = Vector2(363, 180.78125)
+scale = Vector2(0.16387983, 0.1455533)
+texture = ExtResource("5_q4awb")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_yaene")
+volume_db = -28.51
+pitch_scale = 1.1
+autoplay = true
+mix_target = 1
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/ButtonPlay" to="." method="_on_button_play_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/ButtonQuit" to="." method="_on_button_quit_pressed"]
